@@ -65,7 +65,7 @@ function createCarouselContainers(pokeRows) {
     aux.appendChild(cItem);
 
     for (i = 0; i < pokeRows.length; i++) {
-        if (i%2 == 0) {
+        if (i%1 == 0) {
             if (i > 0) { 
                 structure += aux.innerHTML;
                 //containers.push(itm);
@@ -91,7 +91,7 @@ function createCarouselRows(pokemonData) {
     row.classList.add("mb-4");
 
     for (i = 0; i < pokemonData.length; i++) {
-        if (i%3 == 0) {
+        if (i%6 == 0) {
             if (i > 0) { pokeRows.push(row);}
             row = document.createElement("SECTION");
             row.classList.add("row");
@@ -106,7 +106,7 @@ function createCarouselRows(pokemonData) {
 
 function createPokemonCard(name, url) {
     let column = document.createElement("SECTION");
-    column.classList.add("col-lg");
+    column.classList.add("col-md-4");
     column.classList.add("my-1");
 
     let card = `
