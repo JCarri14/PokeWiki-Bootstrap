@@ -1,0 +1,33 @@
+:root {
+    --primary-color: #003A70;
+    --primary-color-low: #3D7DCA;
+    --second-color: #FFCB05;
+}
+
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: var(--primary-color-low);
+}
+
+.control-container {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+}
+
+.card-img {
+    align-self: center;
+    max-width: 200px;
+    max-height: 150px;
+    object-fit: contain;
+}
+
+.card>img {
+    max-width: 150px;
+    max-height: 150px;
+    align-self: center;
+}
+
+.content {
+
+}
