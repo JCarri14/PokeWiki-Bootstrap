@@ -47,7 +47,7 @@
                     <h3 class="display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5">Pokemon Wiki</h3>
                     <section class="form-inline mt-lg-2 text-center">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
+                        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" data-toggle="modal" data-target="#exampleModalCenter">Search</button>
                     </section>
                     </section>
                     <!--Grid column-->
@@ -101,6 +101,54 @@
                 </section>
             </section>
         </section>
+        </section>
+          <!-- Modal -->
+        <section class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <section class="modal-dialog modal-dialog-centered" role="document">
+                <section class="modal-content" style="background-color: transparent;">
+                    
+                    <section class="modal-body" style="padding : 0px;">
+                        <section class="container" style="padding:0px !important;" >
+                            <section class="row mx-auto" style="justify-content: center;">
+                        <section class="card" style="max-width:800px;border-radius:10px;width: -webkit-fill-available;">
+                            <section style="background:linear-gradient( 0deg, rgba(255, 255, 255, 0.7) 0%, rgba(9,9,121,0.7) 0%, rgb(24, 4, 179) 100%);max-width:800px;height:200px;border-radius:10px 10px 0px 0px;border-bottom:10px solid black;">
+                            </section>
+                            <section class="modal-header" style="position: absolute;width: 100%;justify-content: center;/* align-self: center; */">
+                                <h5 class="modal-title" style="color: white;align-self: center !important;" id="exampleModalCenterTitle">Pikachu</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: absolute;right: 20px;">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </section>
+                            <section class="mx-auto" id="pic" style="width:150px;height:150px;border-radius:50%;position:relative;top:-80px;background-color:white;border:10px solid black;">
+                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png" style="position:relative;top:-10px;" width="150" height="150/">
+                            </section>
+                            <section style="max-width:800px;">
+                                <section class="row">
+                                    <section class="col-md">
+                                        <section class="container" style="text-align:left !important;" id="desc">
+                                            <p><b>Type:</b> electric</p>
+                                            <hr>
+                                            <p id="abty">
+                                                <b>Abilities: </b>
+                                                <span class="badge badge-danger">lightning-rod</span>&nbsp;
+                                                <span class="badge badge-danger">static</span>&nbsp;
+                                                <hr>
+                                                <p>
+                                                    <b>Moves: </b>
+                                                    <button class="badge badge-danger">~</button>
+                                                </p>
+                                                <p id="mvs"><span class="badge badge-light">mega-punch</span>&nbsp;</p>
+                                            </p>
+                                            </section>
+                                    </section>
+                                </section>
+                            </section>
+                        </section>
+                    </section>
+                    </section>
+                </section>
+                </section>
+            </section>
         </section>
         <section class="row" hidden>
            <footer class="navbar navbar-expand-lg navbar-dark bg-dark">
