@@ -6,6 +6,9 @@ let typeSlide = 1;
 let folderPath = "assets/";
 let containers;
 
+const MEDIUM_SIZE = 768;
+const SMALL_SIZE = 576;
+
 let typeNames = ["All", "Fire", "Water", "Electric", "Grass",
 "Ice", "Fighting", "Poison", "Ground", "Flying",
 "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark",
@@ -27,10 +30,6 @@ class PokeType {
         this.pokemons.push(p);
     }
 }
-
-let pokeData = new Array();
-
-let pokemonData = new Array();
 
 function plusType(n) {
     typeSlide += n;
@@ -61,7 +60,7 @@ function updateTypeToShow() {
     getPokemonTypeList();
 }
 
-function createCarouselContainers(size) {
+function createCarouselContainersPC(size) {
     
     container = document.getElementsByClassName("carousel-inner")[0];
     let itemsSize = Math.ceil(size/6);
@@ -90,9 +89,43 @@ function createCarouselContainers(size) {
 
 }
 
+function createCarouselContainersMobile(size) {
+    
+    container = document.getElementsByClassName("carousel-inner")[0];
+    for (i = 0; i < size/2; i++) {
+        
+        let cItem = document.createElement("SECTION");
+        cItem.classList.add("carousel-item");
+
+        if (i == 0) {
+            cItem.classList.add("active");
+        }
+        
+        let cCont = document.createElement("SECTION");
+        cCont.classList.add("container");
+
+        let row = document.createElement("SECTION");
+        row.classList.add("row");
+        row.classList.add("row-cols-1");
+        row.classList.add("mb-4");
+        row.classList.add("pag" + i);
+
+        cCont.appendChild(row);
+        cItem.appendChild(cCont);
+        container.appendChild(cItem);
+    }
+
+}
+
 function createPokemonCard(name, url) {
     let column = document.createElement("SECTION");
-    column.classList.add("col-md-4");
+    let pageWidth = document.documentElement.clientWidth;
+    let isMobile = false;
+    if (pageWidth <= SMALL_SIZE) {isMobile=true;}
+
+    if (!isMobile) { column.classList.add("col-md-4");} else {
+        column.classList.add("col");
+    }
     column.classList.add("my-1");
 
     let card = `
@@ -101,7 +134,6 @@ function createPokemonCard(name, url) {
         <h3 class="card-title text-center">${name}</h3>
     </section>`;
     column.innerHTML = card;
-    //document.createRange().createContextualFragment(card)
     return column;
 }
 
@@ -136,16 +168,35 @@ function getPokemonTypeList() {
         })
         .then(function(myJson) {
             let pokemons = myJson.pokemon;
-            createCarouselContainers(pokemons.length);
             
-            let pag = 0;
-            for (i = 0; i < pokemons.length; i++) {
-                p = pokemons[i].pokemon;
-                if (p !== undefined) { 
-                    if (i%6 == 0 && i > 0) pag++;
-                    let foo = getPokemonInfo(p, pag);
-                }
-            }       
+            let pageWidth = document.documentElement.clientWidth;
+            let isMobile = false;
+            if (pageWidth <= SMALL_SIZE) {isMobile=true;}
+
+            if (isMobile) {
+                createCarouselContainersMobile(pokemons.length);
+
+                let pag = 0;
+                for (i = 0; i < pokemons.length; i++) {
+                    p = pokemons[i].pokemon;
+                    if (p !== undefined) { 
+                        if (i%2 == 0 && i > 0) pag++;
+                        let foo = getPokemonInfo(p, pag);
+                    }
+                } 
+
+            } else {
+                createCarouselContainersPC(pokemons.length);
+
+                let pag = 0;
+                for (i = 0; i < pokemons.length; i++) {
+                    p = pokemons[i].pokemon;
+                    if (p !== undefined) { 
+                        if (i%6 == 0 && i > 0) pag++;
+                        let foo = getPokemonInfo(p, pag);
+                    }
+                } 
+            }         
             
         })
         .catch(function(error) {
@@ -164,13 +215,27 @@ async function getAllPokemons() {
     let counter = 0;
     let pag = 0;
 
-    createCarouselContainers(maxUsedPokemons);
+    let pageWidth = document.documentElement.clientWidth;
+    let isMobile = false;
+    if (pageWidth <= SMALL_SIZE) {isMobile=true;}
 
-    for (i = 1; i < maxUsedPokemons; i++) {
-        var urlAux = 'https://pokeapi.co/api/v2/pokemon/' + i + '/';
-        if (i%6 == 0 && i > 0) pag++;
-        let foo = getPokemonInfo({url: "" + urlAux}, pag);
-    } 
+    if (isMobile) {
+        createCarouselContainersMobile(maxUsedPokemons);
+        for (i = 1; i < maxUsedPokemons; i++) {
+            var urlAux = 'https://pokeapi.co/api/v2/pokemon/' + i + '/';
+            if (i%2 == 0 && i > 0) pag++;
+            let foo = getPokemonInfo({url: "" + urlAux}, pag);
+        } 
+    } else {
+        createCarouselContainersPC(maxUsedPokemons);
+        for (i = 1; i < maxUsedPokemons; i++) {
+            var urlAux = 'https://pokeapi.co/api/v2/pokemon/' + i + '/';
+            if (i%6 == 0 && i > 0) pag++;
+            let foo = getPokemonInfo({url: "" + urlAux}, pag);
+        } 
+    }
+
+    
 
     return null;
 }

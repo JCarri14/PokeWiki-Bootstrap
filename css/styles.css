@@ -5,6 +5,7 @@
 }
 
 body {
+    overflow-x: hidden;
     font-family: 'Courier New', Courier, monospace;
     background-color: rgb(24, 4, 179);
 }
