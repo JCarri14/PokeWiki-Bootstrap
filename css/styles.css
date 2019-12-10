@@ -6,7 +6,7 @@
 
 body {
     font-family: 'Courier New', Courier, monospace;
-    background-color: var(--primary-color-low);
+    background-color: rgb(24, 4, 179);
 }
 
 .control-container {
@@ -17,8 +17,8 @@ body {
 
 .card-img {
     align-self: center;
-    max-width: 200px;
-    max-height: 150px;
+    max-width: 100px;
+    max-height: 100px;
     object-fit: contain;
 }
 
@@ -28,6 +28,56 @@ body {
     align-self: center;
 }
 
-.content {
+.view {
+    height: 100vh;
+    width: 100%;
+    background-image:url("https://wallpaperaccess.com/full/20996.jpg");  
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover;
+    
+}
 
+.mask {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-inline {
+    align-items: center;
+    justify-content: center;
+}
+
+.white-text {
+    color: white;
+}
+
+#carouselExampleIndicators {
+    min-width: 100%;
+}
+
+.top-nav-collapse {
+    background-color: #563e91 !important;
+}
+
+.navbar:not(.top-nav-collapse) {
+    background: transparent !important;
+}
+
+.main-content .card {
+    align-self: center;
+    max-height: 25%;
+}
+
+.card-body > h3 {
+    font-size: medium;
+}
+
+.rgba-gradient {
+    background: -moz-linear-gradient(90deg, rgba(2,0,36,0.7) 0%, rgba(9,9,121,0.7) 65%, rgb(24, 4, 179) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(2,0,36,0.7) 0%, rgba(9,9,121,0.7) 65%, rgb(24, 4, 179) 100%);
+    background: linear-gradient( 180deg, rgba(2,0,36,0.7) 0%, rgba(9,9,121,0.7) 65%, rgb(24, 4, 179) 100%);
 }

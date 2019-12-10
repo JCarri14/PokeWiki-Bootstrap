@@ -5,6 +5,7 @@ let maxUsedPokemons = 150;
 let typeSlide = 1;
 let folderPath = "assets/";
 let containers;
+
 let typeNames = ["All", "Fire", "Water", "Electric", "Grass",
 "Ice", "Fighting", "Poison", "Ground", "Flying",
 "Psychic", "Bug", "Rock", "Ghost", "Dragon", "Dark",
@@ -14,6 +15,20 @@ let typeImgs = ["all.png", "fire.png", "water.png", "electric.png",
 "grass.png", "ice.png", "fighting.png", "poison.png", "ground.png", 
 "flying.png", "psychic.png", "bug.png", "rock.png", "ghost.png", 
 "dragon.png", "dark.png", "steel.png", "fairy.png" ];
+
+
+class PokeType {
+    constructor(typeName, pokemons) {
+        this.typeName = typeName;
+        this.pokemons = pokemons || new Array();
+    }
+
+    addPokemon (p) {
+        this.pokemons.push(p);
+    }
+}
+
+let pokeData = new Array();
 
 let pokemonData = new Array();
 
@@ -48,60 +63,34 @@ function updateTypeToShow() {
     getPokemonTypeList();
 }
 
-function createCarouselContainers(pokeRows) {
-
-    //let containers = new Array(); // Carousel item
-    let structure = "";
-
-    let aux = document.createElement("SECTION");
-
-    let cItem = document.createElement("SECTION");
-    cItem.classList.add("carousel-item");
+function createCarouselContainers(size) {
     
-    let cCont = document.createElement("SECTION");
-    cCont.classList.add("container");
+    container = document.getElementsByClassName("carousel-inner")[0];
 
-    cItem.appendChild(cCont);
-    aux.appendChild(cItem);
+    let itemsSize = Math.ceil(size/6);
+    for (i = 0; i < size; i++) {
+        
+        let cItem = document.createElement("SECTION");
+        cItem.classList.add("carousel-item");
 
-    for (i = 0; i < pokeRows.length; i++) {
-        if (i%1 == 0) {
-            if (i > 0) { 
-                structure += aux.innerHTML;
-                //containers.push(itm);
-            }    
-            while(cCont.firstChild) {
-                cCont.removeChild(cCont.firstChild);
-            }
+        if (i == 0) {
+            cItem.classList.add("active");
         }
-        cCont.appendChild(pokeRows[i]);
+        
+        let cCont = document.createElement("SECTION");
+        cCont.classList.add("container");
+
+        let row = document.createElement("SECTION");
+        row.classList.add("row");
+        row.classList.add("row-cols-1");
+        row.classList.add("mb-4");
+        row.classList.add("pag" + i);
+
+        cCont.appendChild(row);
+        cItem.appendChild(cCont);
+        container.appendChild(cItem);
     }
-    structure += aux.innerHTML;
-    containers = document.createRange().createContextualFragment(structure);
-    containers.children[0].classList.add("active");
-    return containers.children;
-}
 
-function createCarouselRows(pokemonData) {
-
-    let pokeRows = new Array(); // Pokemons rows
-    let row = document.createElement("SECTION");
-    row.classList.add("row");
-    row.classList.add("row-cols-1");
-    row.classList.add("mb-4");
-
-    for (i = 0; i < pokemonData.length; i++) {
-        if (i%6 == 0) {
-            if (i > 0) { pokeRows.push(row);}
-            row = document.createElement("SECTION");
-            row.classList.add("row");
-            row.classList.add("row-cols-1");
-            row.classList.add("mb-4");
-        }
-        row.appendChild(pokemonData[i]);
-    }
-    pokeRows.push(row);
-    return pokeRows;
 }
 
 function createPokemonCard(name, url) {
@@ -119,16 +108,17 @@ function createPokemonCard(name, url) {
     return column;
 }
 
-async function getPokemonInfo(pokemon) {
+function getPokemonInfo(pokemon, pagId) {
 
-    await fetch(pokemon.url)
+    fetch(pokemon.url)
     .then(function(response) {
         return response.json();
     })
     .then(function(myJson) {
         p = myJson;  
         if (p !== undefined) {
-            pokemonData.push(createPokemonCard(p.name, p.sprites.front_default));
+            let page = document.getElementsByClassName("pag" + pagId)[0];
+            page.appendChild(createPokemonCard(p.name, p.sprites.front_default));
         }      
     })
     .catch(function(error) {
@@ -147,23 +137,20 @@ function getPokemonTypeList() {
         .then(function(response) {
             return response.json();
         })
-        .then(async function(myJson) {
-            let pokemons = myJson.pokemon;  
-
+        .then(function(myJson) {
+            let pokemons = myJson.pokemon;
+            
+            createCarouselContainers(pokemons.length);
+            
+            let pag = 0;
             for (i = 0; i < pokemons.length; i++) {
                 p = pokemons[i].pokemon;
                 if (p !== undefined) { 
-                    let foo = await getPokemonInfo(p);
+                    if (i%6 == 0 && i > 0) pag++;
+                    let foo = getPokemonInfo(p, pag);
                 }
             }        
-            let pokeRows = createCarouselRows(pokemonData); // Pokemons row  
-
-            let carContainers = createCarouselContainers(pokeRows);
             
-            let inn = document.getElementsByClassName("carousel-inner")[0];
-            for (i = 0; i < carContainers.length; i++) {
-                inn.appendChild(carContainers[i]);
-            }
         })
         .catch(function(error) {
         console.log('Hubo un problema con la petición Fetch:' + error.message);
