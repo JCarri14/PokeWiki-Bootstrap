@@ -36,6 +36,7 @@ function plusType(n) {
     typeSlide += n;
     if (typeSlide >= typeNames.length) {typeSlide = 0}
     if (typeSlide < 0) {typeSlide = typeNames.length-1}
+    resetCarousel();
     updateTypeToShow();
 }
 
@@ -44,8 +45,6 @@ function resetCarousel() {
     while (carousel.firstChild) {
         carousel.removeChild(carousel.firstChild);
     }
-    pokemonData = new Array();
-
 }
 
 function updateTypeToShow() {
@@ -59,16 +58,14 @@ function updateTypeToShow() {
     let title = document.getElementsByClassName("type-title")[0];
     title.innerHTML = newTitle; 
     
-    resetCarousel();
     getPokemonTypeList();
 }
 
 function createCarouselContainers(size) {
     
     container = document.getElementsByClassName("carousel-inner")[0];
-
     let itemsSize = Math.ceil(size/6);
-    for (i = 0; i < size; i++) {
+    for (i = 0; i < itemsSize; i++) {
         
         let cItem = document.createElement("SECTION");
         cItem.classList.add("carousel-item");
@@ -139,7 +136,6 @@ function getPokemonTypeList() {
         })
         .then(function(myJson) {
             let pokemons = myJson.pokemon;
-            
             createCarouselContainers(pokemons.length);
             
             let pag = 0;
@@ -149,7 +145,7 @@ function getPokemonTypeList() {
                     if (i%6 == 0 && i > 0) pag++;
                     let foo = getPokemonInfo(p, pag);
                 }
-            }        
+            }       
             
         })
         .catch(function(error) {
@@ -166,20 +162,15 @@ async function getAllPokemons() {
 
     let containerBox = 0;
     let counter = 0;
+    let pag = 0;
+
+    createCarouselContainers(maxUsedPokemons);
 
     for (i = 1; i < maxUsedPokemons; i++) {
         var urlAux = 'https://pokeapi.co/api/v2/pokemon/' + i + '/';
-        let foo = await getPokemonInfo({url: "" + urlAux});
-    }
-      
-    let pokeRows = createCarouselRows(pokemonData); // Pokemons row  
-
-    let carContainers = createCarouselContainers(pokeRows);
-    
-    let inn = document.getElementsByClassName("carousel-inner")[0];
-    for (i = 0; i < carContainers.length; i++) {
-        inn.appendChild(carContainers[i]);
-    }
+        if (i%6 == 0 && i > 0) pag++;
+        let foo = getPokemonInfo({url: "" + urlAux}, pag);
+    } 
 
     return null;
 }
