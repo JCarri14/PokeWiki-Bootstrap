@@ -1,3 +1,5 @@
+
+
 let root = document.documentElement;
 let maxPokemons = 964;
 let maxUsedPokemons = 150;
@@ -239,7 +241,25 @@ async function getAllPokemons() {
 
     return null;
 }
-
+async function showPokemon(){
+    var inputText= document.getElementById('pokemonInput').value;
+    var urlPokemon = 'https://pokeapi.co/api/v2/pokemon/' + inputText;
+    fetch(urlPokemon)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(pokemon) {
+        document.getElementById('pokemonTitle').innerText= pokemon.name;
+        document.getElementById('pokeImage').src= pokemon.sprites.front_default;
+        //pokemon.types[0].type.name;
+        $('#pokemonModal').modal() 
+    })
+    .catch(function(error) {
+        $('.toast').toast('show');
+    console.log('Hubo un problema con la petición Fetch:' + error.message);
+    });
+    
+}
 
 
 

@@ -1,58 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <!-- Bootstrap CSS -->
-     <link rel="stylesheet" type = "text/css" href="css/normalize.css">
-     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-     <link rel="stylesheet" href="css/styles.css">
-     <script src="js/app.js"></script>
-     <title>Boostrap</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="css/normalize.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/app.js"></script>
+    <title>Boostrap</title>
 </head>
+
 <body>
     <header>
         <!-- Navbar -->
         <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <section class="collapse ml-5 navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#">About</a>
                     </li>
                     <li class="nav-item dropdown">
                     </li>
                     <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
                     </li>
                 </ul>
             </section>
-        </nav> 
+        </nav>
         <!-- Navbar -->
         <section class="view">
             <!-- Mask & flexbox options-->
             <section class="mask rgba-gradient align-items-center">
                 <!-- Content -->
                 <section class="container px-md-3 px-sm-0">
-                <!--Grid row-->
-                <section class="row  fadeIn">
-                    <!--Grid column-->
-                    <section class="col-md-12 mb-4 white-text text-center  fadeIn">
-                    <h3 class="display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5">Pokemon Wiki</h3>
-                    <section class="form-inline mt-lg-2 text-center">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-primary my-2 my-sm-0" type="button" data-toggle="modal" data-target="#exampleModalCenter">Search</button>
+                    <!--Grid row-->
+                    <section class="row  fadeIn">
+                        <!--Grid column-->
+                        <section class="col-md-12 mb-4 white-text text-center  fadeIn">
+                            <h3 class="display-3 font-weight-bold white-text mb-0 pt-md-5 pt-5">Pokemon Wiki</h3>
+                            <section class="form-inline mt-lg-2 text-center">
+                                <input id="pokemonInput" class="form-control mr-sm-2" type="search" placeholder="Search"
+                                    aria-label="Search">
+                                <button class="btn btn-outline-primary my-2 my-sm-0" type="button"
+                                    onclick="showPokemon()">Search</button>
+                            </section>
+                            <br>
+                        </section>
+                        <!--Grid column-->
                     </section>
+                    <!--Grid row-->
+                    <section class="row" style="justify-content: center;">
+                        <!--Toast-->
+                        <div class="toast  align-items-center" id="toastError" style="align-self: center; background-color: transparent;border-radius: 0%;">
+                            <!--Alert pokemon not found-->
+                            <div class="alert alert-danger" id="notFoundAlert" aria-hidden="true">
+                                <strong>Error! </strong> The pokemon you searched for was not found
+                            </div>
+                        </div>
                     </section>
-                    <!--Grid column-->
-                </section>
-                <!--Grid row-->
                 </section>
                 <!-- Content -->
             </section>
@@ -62,7 +78,7 @@
     <section class="main">
         <section class="row">
             <section class="container-lg">
-            <section class="row">
+                <section class="row">
                     <section style="width: 100%;" class="card mx-auto control-container">
                         <section class="card-header px-0 py-1  text-center">
                             Type Selector
@@ -71,115 +87,151 @@
                             <section class="container">
                                 <section class="row">
                                     <section class="col px-0 text-center my-auto">
-                                        <button type="button" class="btn btn-primary" onclick="plusType(-1)">Prev</button>
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="plusType(-1)">Prev</button>
                                     </section>
                                     <section class="col px-0 text-center mx-2">
                                         <img class="card-img" src="assets/all.png" alt="Card image cap">
                                         <h6 class="card-subtitle type-title my-0 text-center">All</h6>
                                     </section>
                                     <section class="col px-0 text-center my-auto">
-                                        <button type="button" class="btn btn-primary" onclick="plusType(1)">Next</button>
+                                        <button type="button" class="btn btn-primary"
+                                            onclick="plusType(1)">Next</button>
                                     </section>
                                 </section>
                             </section>
                         </section>
                     </section>
-            </section>
-            <section class="row mt-2 mb-5 mx-auto">
-                <section id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    <section class="carousel-inner">
-                        
+                </section>
+                <section class="row mt-2 mb-5 mx-auto">
+                    <section id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <section class="carousel-inner">
+
+                        </section>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button"
+                            data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button"
+                            data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
                     </section>
-                    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
                 </section>
             </section>
         </section>
-        </section>
-          <!-- Modal -->
-        <section class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <section class="modal-dialog modal-dialog-centered" role="document">
+        <!-- Modal -->
+        <section class="modal fade" id="pokemonModal" tabindex="-1" role="dialog" aria-labelledby="pokemonTitle"
+            aria-hidden="true">
+            <section class="modal-dialog modal-dialog-centered" role="document">
                 <section class="modal-content" style="background-color: transparent;">
-                    
+
                     <section class="modal-body" style="padding : 0px;">
-                        <section class="container" style="padding:0px !important;" >
+                        <section class="container" style="padding:0px !important;">
                             <section class="row mx-auto" style="justify-content: center;">
-                        <section class="card" style="max-width:800px;border-radius:10px;width: -webkit-fill-available;">
-                            <section style="background:linear-gradient( 0deg, rgba(255, 255, 255, 0.7) 0%, rgba(9,9,121,0.7) 0%, rgb(24, 4, 179) 100%);max-width:800px;height:200px;border-radius:10px 10px 0px 0px;border-bottom:10px solid black;">
-                            </section>
-                            <section class="modal-header" style="position: absolute;width: 100%;justify-content: center;/* align-self: center; */">
-                                <h5 class="modal-title" style="color: white;align-self: center !important;" id="exampleModalCenterTitle">Pikachu</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: absolute;right: 20px;">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </section>
-                            <section class="mx-auto" id="pic" style="width:150px;height:150px;border-radius:50%;position:relative;top:-80px;background-color:white;border:10px solid black;">
-                                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/25.png" style="position:relative;top:-10px;" width="150" height="150/">
-                            </section>
-                            <section style="max-width:800px;">
-                                <section class="row">
-                                    <section class="col-md">
-                                        <section class="container" style="text-align:left !important;" id="desc">
-                                            <p><b>Type:</b> electric</p>
-                                            <hr>
-                                            <p id="abty">
-                                                <b>Abilities: </b>
-                                                <span class="badge badge-danger">lightning-rod</span>&nbsp;
-                                                <span class="badge badge-danger">static</span>&nbsp;
-                                                <hr>
-                                                <p>
-                                                    <b>Moves: </b>
-                                                    <button class="badge badge-danger">~</button>
-                                                </p>
-                                                <p id="mvs"><span class="badge badge-light">mega-punch</span>&nbsp;</p>
-                                            </p>
+                                <section class="card"
+                                    style="max-width:800px;border-radius:10px;width: -webkit-fill-available;">
+                                    <section
+                                        style="background:linear-gradient( 0deg, rgba(255, 255, 255, 0.7) 0%, rgba(9,9,121,0.7) 0%, rgb(24, 4, 179) 100%);max-width:800px;height:200px;border-radius:10px 10px 0px 0px;border-bottom:10px solid black;">
+                                    </section>
+                                    <section class="modal-header"
+                                        style="position: absolute;width: 100%;justify-content: center;/* align-self: center; */">
+                                        <h5 class="modal-title" style="color: white;align-self: center !important;"
+                                            id="pokemonTitle">Pikachu</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                                            style="position: absolute;right: 20px;">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                    </section>
+                                    <section class="mx-auto" id="pic"
+                                        style="width:150px;height:150px;border-radius:50%;position:relative;top:-80px;background-color:white;border:10px solid black;">
+                                        <img id="pokeImage" style="position:relative;top:-10px;width : 150px ;height :150px ;" src="#" alt="PokemonImage">
+                                    </section>
+                                    <section style="max-width:800px;">
+                                        <section class="row">
+                                            <section class="col-md">
+                                                <section class="container" style="text-align:left !important;"
+                                                    id="desc">
+                                                    <p><b>Type:</b> electric</p>
+                                                    <hr>
+                                                        <b>Abilities: </b>
+                                                        <span class="badge badge-danger">lightning-rod</span>&nbsp;
+                                                        <span class="badge badge-danger">static</span>&nbsp;
+                                                        <hr>
+                                                        <p>
+                                                            <b>Moves: </b>
+                                                            <button class="badge badge-danger">~</button>
+                                                        </p>
+                                                        <p id="mvs"><span
+                                                                class="badge badge-light">mega-punch</span>&nbsp;
+                                                        </p>
+                                                </section>
                                             </section>
+                                        </section>
                                     </section>
                                 </section>
                             </section>
                         </section>
                     </section>
-                    </section>
-                </section>
                 </section>
             </section>
         </section>
+
         <section class="row" hidden>
-           <footer class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">POKEWIKI</a>
-            <section class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto">
-                    <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                    </li>
-                    <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-            </section>
-        </footer> 
+            <footer class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="#">POKEWIKI</a>
+                <section class="collapse navbar-collapse" id="navbarSupportedContent2">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">About</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                        </li>
+                    </ul>
+                </section>
+            </footer>
         </section>
-        
-    </section> 
+
     </section>
 
-    
+
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>    
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script>updateTypeToShow()</script>
+    <script>
+        $(document).ready(function () {
+            $(".show-toast").click(function () {
+                $("#toastError").toast({
+                    delay: 3000
+                });
+            });
+        });
+    </script>
+
 </body>
+
 </html>
